@@ -1,0 +1,71 @@
+<div class="wallet">
+  <div>
+    <app-crypto-search
+      placeholder="Search portfolio"
+      (searchChanged)="onSearchTextChanged($event)"
+    />
+    <app-currency-selector/>
+  </div>
+
+  <div>
+    <h3>Total Portfolio Value: {{ totalValue | number: '1.0-2' }} {{ this.selectedCurrencyForTotal }}</h3>
+  </div>
+
+  <table mat-table [dataSource]="(assets$ | async) || [] | search: searchText: ['token']" class="mat-elevation-z8">
+    <ng-container matColumnDef="token">
+      <th mat-header-cell *matHeaderCellDef> Token </th>
+      <td mat-cell *matCellDef="let element"> {{ element.token }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th mat-header-cell *matHeaderCellDef> Amount </th>
+      <td mat-cell *matCellDef="let element"> {{ element.amount }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['token', 'amount']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['token', 'amount']"></tr>
+  </table>
+
+  <div>
+    <h3>Transactions</h3>
+    <ul>
+      <li *ngFor="let tx of transactions">
+        {{ tx.date }}: {{ tx.type }} {{ tx.amount }} {{ tx.token }}
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <h3>Add or Send Funds</h3>
+    <mat-form-field appearance="fill">
+      <mat-label>Token</mat-label>
+      <input
+        type="text"
+        matInput
+        [ngModel]="selectedCurrency"
+        (ngModelChange)="selectToken($event)"
+        [matAutocomplete]="fromAuto"
+      />
+      <mat-autocomplete #fromAuto="matAutocomplete">
+        <mat-option
+          *ngFor="let symbol of availableCurrencies"
+          [value]="symbol"
+        >
+          {{ symbol }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" [(ngModel)]="newAmount" min="0"/>
+    </mat-form-field>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+    <div>
+      <button mat-raised-button color="primary" (click)="addFunds()">Add Funds</button>
+      <button mat-raised-button color="warn" (click)="sendFunds()">Send Funds</button>
+    </div>
+  </div>
+</div>

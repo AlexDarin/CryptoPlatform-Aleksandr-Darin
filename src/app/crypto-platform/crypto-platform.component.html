@@ -1,0 +1,24 @@
+<div class="board-container">
+  <aside class="board_side-bar">
+    <h1>{{ 'Crypto Platform' }}</h1>
+    <div class="board-side-bar-links">
+      @for (route of routes; track route) {
+        <a
+          [routerLink]="'/' + route.path"
+          [ngClass]="{'board-side-bar-link': true, 'board-side-bar-link-selected': isCurrentRoute(route.name)}"
+        >
+          {{ route.name }}
+        </a>
+      }
+    </div>
+  </aside>
+  <div class="board-body">
+    <div class="board-top-bar">
+      <h3>{{ this.getCurrentTabName() }}</h3>
+      <app-theme-toggle/>
+    </div>
+    <div>
+      <router-outlet/>
+    </div>
+  </div>
+</div>

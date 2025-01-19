@@ -1,0 +1,42 @@
+{
+  "assets": [
+    {
+      "id": "86be0888-fb1b-4c77-b167-c386d4fc3e09",
+      "token": "USDT",
+      "amount": 1000
+    },
+    {
+      "id": "47cbe574-42dc-46f8-ba0c-763782a11001",
+      "token": "BTC",
+      "amount": 0.0001
+    },
+    {
+      "id": "66023790-08ff-464f-bc7c-21c8b9e49f50",
+      "token": "XRP",
+      "amount": 15
+    }
+  ],
+  "transactions": [
+    {
+      "id": "d91ded5f-b417-4677-bc63-4071054938c6",
+      "token": "USDT",
+      "amount": 1000,
+      "type": "Deposit",
+      "date": "2024-11-14"
+    },
+    {
+      "id": "d0a6eef4-7a6a-44dc-949d-92adddfe3bcc",
+      "token": "BTC",
+      "amount": 0.0001,
+      "type": "Deposit",
+      "date": "2025-11-26"
+    },
+    {
+      "id": "9b8ae703-5f28-42b3-89f6-5b455f174e9f",
+      "token": "XRP",
+      "amount": 15,
+      "type": "Deposit",
+      "date": "2023-12-08"
+    }
+  ]
+}

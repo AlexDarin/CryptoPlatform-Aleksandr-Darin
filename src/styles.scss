@@ -1,0 +1,29 @@
+@import 'themes.scss';
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+mat-form-field {
+  margin: 0 1rem;
+}
+
+button {
+  margin: 1rem;
+}
+
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.light-theme {
+  @include theme($light-colors);
+}
+
+.dark-theme {
+  @include theme($dark-colors);
+}
