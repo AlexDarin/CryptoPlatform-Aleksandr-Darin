@@ -1,0 +1,71 @@
+.converter {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--hover-background-color);
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.converter-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.converter-input {
+  flex: 1;
+  width: 20%;
+  color: var(--input-background-color);
+}
+
+.amount-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.converter-token {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.token-info {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.token-name {
+  color: #333;
+}
+
+.swap-button {
+  background-color: #007bff;
+  color: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.swap-button mat-icon {
+  font-size: 20px;
+}
+
+.converter-result {
+  flex: 2;
+  text-align: right;
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.converter-token .exchange-rate {
+  font-size: 12px;
+  color: var(--text-color);
+  margin-top: 5px;
+}

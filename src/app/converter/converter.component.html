@@ -1,0 +1,77 @@
+<div class="converter">
+  <div class="converter-container">
+    <div class="converter-token">
+      <div class="token-info">
+        <span class="token-name">{{ fromSymbol }}</span>
+        <div *ngIf="exchangeRate" class="exchange-rate">
+          1 {{ fromSymbol }} = {{ exchangeRate | number: '1.4-4' }} {{ toSymbol }}
+        </div>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>From</mat-label>
+        <input
+          type="text"
+          matInput
+          [ngModel]="fromSymbol"
+          [matAutocomplete]="fromAuto"
+          (ngModelChange)="handleTokenChange('from', $event)"
+        />
+        <mat-autocomplete #fromAuto="matAutocomplete">
+          <mat-option
+            *ngFor="let symbol of filteredCryptoListFrom"
+            [value]="symbol"
+          >
+            {{ symbol }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <button mat-icon-button class="swap-button" (click)="swapTokens()">
+      <mat-icon>swap_horiz</mat-icon>
+    </button>
+
+    <div class="converter-token">
+      <div class="token-info">
+        <span class="token-name">{{ toSymbol }}</span>
+      </div>
+      <mat-form-field appearance="fill">
+        <mat-label>To</mat-label>
+        <input
+          type="text"
+          matInput
+          [ngModel]="toSymbol"
+          [matAutocomplete]="toAuto"
+          (ngModelChange)="handleTokenChange('to', $event)"
+        />
+        <mat-autocomplete #toAuto="matAutocomplete">
+          <mat-option
+            *ngFor="let symbol of filteredCryptoListTo"
+            [value]="symbol"
+          >
+            {{ symbol }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="converter-input">
+    <input
+      type="number"
+      matInput
+      class="amount-input"
+      placeholder="Amount"
+      [(ngModel)]="amount"
+      (ngModelChange)="calculateResult()"
+      min="0"
+    />
+  </div>
+  <div class="converter-result">
+    <span *ngIf="validateAmount() && result">{{ amount }} {{ fromSymbol }} = {{ result }} {{ toSymbol }}</span>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+</div>

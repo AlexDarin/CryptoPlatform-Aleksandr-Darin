@@ -1,0 +1,92 @@
+@use '@angular/material' as mat;
+
+$light-colors: (
+  primary: #007bff,
+  background: #ffffff,
+  text: #333333,
+  border: #dddddd,
+  link: #007bff,
+  link-hover: #0056b3,
+);
+
+$dark-colors: (
+  primary: #243a6a,
+  background: #1f2227,
+  text: #ffffff,
+  border: #333333,
+  link: #64b5f6,
+  link-hover: #42a5f5,
+);
+
+:root {
+  --primary-color: #007bff;
+  --primary-text-color: #ffffff;
+  --secondary-text-color: #a5aad6;
+  --background-color: #ffffff;
+  --border-color: #dddddd;
+  --text-color: #333333;
+  --secondary-background-color: #f9f9f9;
+  --hover-background-color: #f1f1f1;
+  --input-background-color: #FFFFFF;
+}
+
+body.dark-theme {
+  --primary-color: #243a6a;
+  --primary-text-color: #ffffff;
+  --secondary-text-color: #90caf9;
+  --background-color: #202227;
+  --border-color: #333333;
+  --text-color: #ffffff;
+  --secondary-background-color: #1d1d1d;
+  --hover-background-color: #333333;
+  --input-background-color: #575757;
+}
+
+@mixin theme($colors) {
+  background-color: map-get($colors, background);
+  color: map-get($colors, text);
+
+  a {
+    color: map-get($colors, link);
+
+    &:hover {
+      color: map-get($colors, link-hover);
+    }
+  }
+
+  border-color: map-get($colors, border);
+}
+
+$light-primary: mat.define-palette(mat.$indigo-palette);
+$light-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$light-warn: mat.define-palette(mat.$red-palette);
+
+$dark-primary: mat.define-palette(mat.$blue-grey-palette);
+$dark-accent: mat.define-palette(mat.$lime-palette, A200, A100, A400);
+$dark-warn: mat.define-palette(mat.$deep-orange-palette);
+
+$light-theme: mat.define-light-theme((
+  color: (
+    primary: $light-primary,
+    accent: $light-accent,
+    warn: $light-warn,
+  ),
+  density: 0,
+));
+
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $dark-primary,
+    accent: $dark-accent,
+    warn: $dark-warn,
+  ),
+  density: 0,
+));
+
+.light-theme {
+  @include mat.all-component-colors($light-theme);
+}
+
+.dark-theme {
+  @include mat.all-component-colors($dark-theme);
+}
